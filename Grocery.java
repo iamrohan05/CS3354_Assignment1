@@ -13,16 +13,25 @@ public class Grocery {
     }   
 }
 
- public static void restockItem(String[] names, int[] stocks, String target, int amount) {
-        for (int i = 0; i < names.length; i++) {
-            if (names[i] != null && names[i].equalsIgnoreCase(target)) {
-                stocks[i] += amount;
-                System.out.println("Stock updated for " + names[i]);
-                return;
-            }
+public static void restockItem(String[] names, int[] stocks,
+    String target, int amount) {
+    boolean found = false;
+
+    for (int i = 0; i < names.length; i++)
+        {
+        if (names[i] != null && names[i].equalsIgnoreCase(target)) {
+            stocks[i] += amount;
+            found = true;
+            System.out.println("Restocked successfully.");
+            break;
         }
-        System.out.println("Item not found.");
-    }
+        }
+        
+
+if (!found) {
+System.out.println("Item not found.");
+}
+}
 public static void main(String[] args) {
         String[] itemNames = new String[10];
         double[] itemPrices = new double[10];
