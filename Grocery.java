@@ -2,41 +2,73 @@ package CS3354_Assignment1;
 
 import java.util.Scanner;
 
+/**
+ * Grocery
+ * 
+ * A simple console-based inventory management program for a grocery store.
+ * Allows viewing inventory and restocking items via user input.
+ * 
+ * @author Pema Lama Rohan Bhandari
+ * 
+ */
 public class Grocery {
-    public static void printInventory(String[] names, double[] prices, int[] stocks){
-    for (int i=0; i<names.length;i++){
-    if (names[i] != null){
-    System.out.println("Name: " + names[i]);
-    System.out.println("Price: " + prices[i]);
-    System.out.println("Stock: " + stocks[i]);
+
+    /**
+     * Prints the current inventory of items, including name, price, and stock.
+     * 
+     * @param names  Array of item names
+     * @param prices Array of item prices
+     * @param stocks Array of item stock quantities
+     */
+    public static void printInventory(String[] names, double[] prices, int[] stocks) {
+        for (int i = 0; i < names.length; i++) {
+            if (names[i] != null) {
+                System.out.println("Name: " + names[i]);
+                System.out.println("Price: " + prices[i]);
+                System.out.println("Stock: " + stocks[i]);
+            }
+        }
     }
-    }   
-}
 
-public static void restockItem(String[] names, int[] stocks,
-    String target, int amount) {
-    boolean found = false;
+    /**
+     * Restocks a specific item in the inventory by adding the specified amount.
+     * If the item is not found, prints an error message.
+     * 
+     * @param names  Array of item names
+     * @param stocks Array of item stock quantities
+     * @param target Name of the item to restock (case-insensitive)
+     * @param amount Quantity to add to the stock
+     */
+    public static void restockItem(String[] names, int[] stocks, String target, int amount) {
+        boolean found = false;
 
-    for (int i = 0; i < names.length; i++)
-        {
-        if (names[i] != null && names[i].equalsIgnoreCase(target)) {
-            stocks[i] += amount;
-            found = true;
-            System.out.println("Restocked successfully.");
-            break;
+        for (int i = 0; i < names.length; i++) {
+            if (names[i] != null && names[i].equalsIgnoreCase(target)) {
+                stocks[i] += amount;
+                found = true;
+                System.out.println("Restocked successfully.");
+                break;
+            }
         }
-        }
-        
 
-if (!found) {
-System.out.println("Item not found.");
-}
-}
-public static void main(String[] args) {
+        if (!found) {
+            System.out.println("Item not found.");
+        }
+    }
+
+    /**
+     * The main method runs the program loop.
+     * Initializes inventory, displays a menu, and processes user input for viewing
+     * and restocking items.
+     * 
+     * @param args Command line arguments (not used)
+     */
+    public static void main(String[] args) {
         String[] itemNames = new String[10];
         double[] itemPrices = new double[10];
         int[] itemStocks = new int[10];
 
+        // Initialize some inventory items
         itemNames[0] = "Apple";
         itemPrices[0] = 0.99;
         itemStocks[0] = 10;
@@ -59,7 +91,7 @@ public static void main(String[] args) {
             System.out.print("Enter choice: ");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); 
+            scanner.nextLine(); // consume newline
 
             if (choice == 1) {
                 printInventory(itemNames, itemPrices, itemStocks);
